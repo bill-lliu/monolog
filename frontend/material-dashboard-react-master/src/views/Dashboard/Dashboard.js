@@ -48,13 +48,13 @@ export default function Dashboard() {
       <GridContainer>
         <GridItem xs={12} sm={6} md={3}>
           <Card>
-            <CardHeader color="warning" stats icon>
-              <CardIcon color="warning">
-                <Icon>content_copy</Icon>
+            <CardHeader color="danger" stats icon>
+              <CardIcon color="danger">
+                <Icon>😠</Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Used Space</p>
+              <p className={classes.cardCategory}>Anger</p>
               <h3 className={classes.cardTitle}>
-                49/50 <small>GB</small>
+                0/100<small>%</small>
               </h3>
             </CardHeader>
             <CardFooter stats>
@@ -73,10 +73,12 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="success" stats icon>
               <CardIcon color="success">
-                <Store />
+                <Icon>🤢</Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Revenue</p>
-              <h3 className={classes.cardTitle}>$34,245</h3>
+              <p className={classes.cardCategory}>Disgusted</p>
+              <h3 className={classes.cardTitle}>
+                0/100<small>%</small>
+              </h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -88,12 +90,14 @@ export default function Dashboard() {
         </GridItem>
         <GridItem xs={12} sm={6} md={3}>
           <Card>
-            <CardHeader color="danger" stats icon>
-              <CardIcon color="danger">
-                <Icon>info_outline</Icon>
+            <CardHeader color="primary" stats icon>
+              <CardIcon color="primary">
+                <Icon>😨</Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Fixed Issues</p>
-              <h3 className={classes.cardTitle}>75</h3>
+              <p className={classes.cardCategory}>Fearful</p>
+              <h3 className={classes.cardTitle}>
+                0/100<small>%</small>
+              </h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -105,12 +109,71 @@ export default function Dashboard() {
         </GridItem>
         <GridItem xs={12} sm={6} md={3}>
           <Card>
+            <CardHeader color="warning" stats icon>
+              <CardIcon color="warning">
+                <Icon>😃</Icon>
+              </CardIcon>
+              <p className={classes.cardCategory}>Happy</p>
+              <h3 className={classes.cardTitle}>
+                0/100<small>%</small>
+              </h3>
+            </CardHeader>
+            <CardFooter stats>
+              <div className={classes.stats}>
+                <Update />
+                Just Updated
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={6} md={3}>
+          <Card>
+            <CardHeader color="warning" stats icon>
+              <CardIcon color="warning">
+                <Icon>😐</Icon>
+              </CardIcon>
+              <p className={classes.cardCategory}>Neutral</p>
+              <h3 className={classes.cardTitle}>
+                0/100<small>%</small>
+              </h3>
+            </CardHeader>
+            <CardFooter stats>
+              <div className={classes.stats}>
+                <Update />
+                Just Updated
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={6} md={3}>
+          <Card>
             <CardHeader color="info" stats icon>
               <CardIcon color="info">
-                <Accessibility />
+                <Icon>😔</Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Followers</p>
-              <h3 className={classes.cardTitle}>+245</h3>
+              <p className={classes.cardCategory}>Sad</p>
+              <h3 className={classes.cardTitle}>
+                0/100<small>%</small>
+              </h3>
+            </CardHeader>
+            <CardFooter stats>
+              <div className={classes.stats}>
+                <Update />
+                Just Updated
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={6} md={3}>
+          <Card>
+            <CardHeader color="rose" stats icon>
+              <CardIcon color="rose">
+                <Icon>😮</Icon>
+              </CardIcon>
+              <p className={classes.cardCategory}>Surprised</p>
+              <h3 className={classes.cardTitle}>
+                0/100<small>%</small>
+              </h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
