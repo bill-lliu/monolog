@@ -6,13 +6,18 @@ from google.cloud import speech
 import pyaudio
 from six.moves import queue
 import requests
+import string
+import time
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'creds.json'
-
 
 # Audio recording parameters
 RATE = 16000
 CHUNK = int(RATE / 10)  # 100ms
+
+# Global variables
+total_word_count = 0
+start = 0
 
 
 class MicrophoneStream(object):
@@ -84,20 +89,7 @@ class MicrophoneStream(object):
 
 
 def listen_print_loop(responses):
-    """Iterates through server responses and prints them.
-
-    The responses passed is a generator that will block until a response
-    is provided by the server.
-
-    Each response may contain multiple results, and each result may contain
-    multiple alternatives; for details, see https://goo.gl/tjCPAU.  Here we
-    print only the transcription for the top alternative of the top result.
-
-    In this case, responses are provided for interim results as well. If the
-    response is an interim one, print a line feed at the end of it, to allow
-    the next result to overwrite it, until the response is a final one. For the
-    final one, print a newline to preserve the finalized transcription.
-    """
+    global total_word_count
     num_chars_printed = 0
     for response in responses:
         if not response.results:
@@ -110,30 +102,34 @@ def listen_print_loop(responses):
         if not result.alternatives:
             continue
 
-        # Display the transcription of the top alternative.
         transcript = result.alternatives[0].transcript
-        # Display interim results, but with a carriage return at the end of the
-        # line, so subsequent lines will overwrite them.
-        #
-        # If the previous result was longer than this one, we need to print
-        # some extra spaces to overwrite the previous result
-        overwrite_chars = " " * (num_chars_printed - len(transcript))
 
+        overwrite_chars = " " * (num_chars_printed - len(transcript))
         if not result.is_final:
             sys.stdout.write(transcript + overwrite_chars + "\r")
             sys.stdout.flush()
-
             num_chars_printed = len(transcript)
-
         else:
             print(transcript + overwrite_chars)
             data = {'text': transcript}
-            requests.post('http://localhost:5555/give/stt', data)
+            requests.post('http://localhost:5555/give/text', data)
+            total_word_count += len(transcript.split())
+            wpm()
+            return
 
-            num_chars_printed = 0
+
+def wpm():
+    global total_word_count
+    global start
+    end = time.time()
+    elapsed_time = end - start
+    words_per_minute = total_word_count / (elapsed_time / 60)
+    data = {'wpm': words_per_minute}
+    requests.post('http://localhost:5555/give/wpm', data)
 
 
 def main():
+    global start
     # See http://g.co/cloud/speech/docs/languages
     # for a list of supported languages.
     language_code = "en-US"  # a BCP-47 language tag
@@ -142,26 +138,28 @@ def main():
         encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
         sample_rate_hertz=RATE,
         language_code=language_code,
+        enable_automatic_punctuation=True,
     )
 
     streaming_config = speech.StreamingRecognitionConfig(
-        config=config, interim_results=False
+        config=config,
+        interim_results=True,
     )
-    while True:
-        with MicrophoneStream(RATE, CHUNK) as stream:
-            audio_generator = stream.generator()
-            requests = (
-                speech.StreamingRecognizeRequest(audio_content=content)
-                for content in audio_generator
-            )
+    start = time.time()
+    with MicrophoneStream(RATE, CHUNK) as stream:
+        audio_generator = stream.generator()
+        requests = (
+            speech.StreamingRecognizeRequest(audio_content=content)
+            for content in audio_generator
+        )
 
-            responses = client.streaming_recognize(streaming_config, requests)
-
-            # Now, put the transcription responses to use.
+        responses = client.streaming_recognize(streaming_config, requests)
+        while True:
             try:
                 listen_print_loop(responses)
             except Exception as exception:
                 print("Excption handle : Exceeded maximum allowed stream duration of 305 seconds")
+
 
 if __name__ == "__main__":
     main()
