@@ -36,7 +36,7 @@ def home():
 @app.route('/give/video-emotions', methods=['POST'])
 def give_video_emotions():
     video_emotion_stack.append([request.form.to_dict(), datetime.now()])
-    return 200
+    return 'success'
 
 @app.route('/get/video-emotions', methods=['GET'])
 def get_video_emotions():
@@ -45,7 +45,7 @@ def get_video_emotions():
 @app.route('/give/wpm', methods=['POST'])
 def give_wpm():
     wpm_stack.append([request.form.to_dict(), datetime.now()])
-    return 200
+    return 'success'
 
 @app.route('/get/wpm', methods=['GET'])
 def get_wpm():
@@ -54,7 +54,7 @@ def get_wpm():
 @app.route('/give/text', methods=['POST'])
 def give_text():
     text_stack.append([request.form.to_dict(), datetime.now()])
-    return 200
+    return 'success'
 
 @app.route('/get/text', methods=['GET'])
 def get_text():
