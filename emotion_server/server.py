@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Stacks
 wpm_stack = []
-text_stack = []
+text_stack = [['I am very upset right now.', datetime.now()]]
 video_emotion_stack = [
 { # spoof data
     "Angry": "0.0",
@@ -53,7 +53,7 @@ def get_wpm():
 
 @app.route('/give/text', methods=['POST'])
 def give_text():
-    text_stack.append([request.form.to_dict(), datetime.now()])
+    text_stack.append([request.form.to_dict()['text'], datetime.now()])
     return 'success'
 
 @app.route('/get/text', methods=['GET'])
