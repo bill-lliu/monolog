@@ -22,8 +22,8 @@ app.get('/emotion', (req, res) =>{
         {id:1, name:"bill"}
     ])
 })
-// store emotion data as a global variable
 
+// Voice get
 app.get('/text', (req, res) =>{
     res.json([
         {id:1, name:"bill"}
