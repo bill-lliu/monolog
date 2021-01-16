@@ -25,7 +25,7 @@ export default function FixedPlugin(props) {
         "rtl-fixed-plugin": props.rtlActive
       })}
     >
-      <div id="fixedPluginClasses" className={props.fixedClasses}>
+      {/* <div id="fixedPluginClasses" className={props.fixedClasses}>
         <div onClick={handleClick}>
           <i className="fa fa-cog fa-2x" />
         </div>
@@ -174,7 +174,7 @@ export default function FixedPlugin(props) {
           </li>
           <li className="adjustments-line" />
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 }
