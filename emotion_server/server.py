@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Stacks
 wpm_stack = []
-text_stack = [['I am very upset right now.', datetime.now()]]
+text_stack = [[' ', datetime.now()]]
 video_emotion_stack = [
 { # spoof data
     "Angry": "0.0",
@@ -62,6 +62,11 @@ def get_text():
 
 @app.route('/get/text_emotion', methods=['GET'])
 def get_text_emotion():
-    return te.get_emotion(text_stack[-1][0])
+    if(len(text_stack) > 3):
+        phrases = text_stack[-3] + ' ' + text_stack[-2] + ' ' + text_stack[-1]
+    else:
+        phrases = text_stack[-1][0]
+
+    return te.get_emotion(phrases)
 
 app.run(port=5555)
