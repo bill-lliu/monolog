@@ -45,7 +45,7 @@ class App extends Component {
                 <center><img src="logo.png" alt="monolog" /></center>
                 <VideoFeed />
                 <Emotions emotions={this.state.emotions} />
-                <Graph emotions={this.state.emotionObject} />
+                <Graph emotionObject={this.state.emotionObject} />
             </div>
         )
     }
@@ -53,6 +53,7 @@ class App extends Component {
     //first time checking page
     componentDidMount() {
         this.interval = setInterval(() => {
+            console.log("Sending Request")
             axios.get('/get/video-emotions').then((res => {
                 const emotion_data = res['data']['emotions']
                 let emotion_list = []
@@ -60,7 +61,7 @@ class App extends Component {
                     emotion_list.push({ 'emotion': key, 'value': value })
                 }
                 this.setState({ emotions: emotion_list });
-                this.setState({ emotionObject: Object.keys(emotion_data) })
+                this.setState({ emotionObject: Object.values(emotion_data) })
                 console.log(this.state)
             }))
         }
@@ -72,7 +73,6 @@ class App extends Component {
 
     //will update every time the state changes
     componentDidUpdate() {
-
         console.log("updating")
     }
 
