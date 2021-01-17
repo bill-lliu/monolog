@@ -16,6 +16,4 @@ const Emotions = ({ emotions }) => {
     )
 };
 
-export default Emotions
-
-
+export default Emotions;
