@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Chart from 'react-apexcharts'
-import axios from 'axios'
+import Chart from 'react-apexcharts';
+import axios from 'axios';
 
 class Graph extends Component {
 

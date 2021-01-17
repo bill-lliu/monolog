@@ -10,45 +10,30 @@ import logo from './assets/img/logo.png';
 
 class App extends Component {
 
-    // func1() {
-    //     alert("Great Shot!");
-    // }
-
-    // func2() {
-    //     alert("Great Shot!");
-    // }
-
     state = {
         emotions: [],
         emotionObject: []
     };
 
-
-
-
     render() {
         return (
             <div style={{ display: "grid", placeItems: "center" }}>
-                <center><img src={logo} alt="monolog" width="240px" height="80px"/></center>
-                {/*<button onClick={func1}>Start Recording!</button>*/}
-                {/*<button onClick={func2}>Stop</button>*/}
+                <center><img src={logo} alt="monolog" width="240px" height="80px" /></center>
                 <VideoFeed />
+                <button
+                    style={{
+                        width: "180px",
+                        borderRadius: "3px",
+                        letterSpacing: "1px",
+                        marginTop: "0.5rem",
+                        marginBottom: '0.1rem'
+                    }}
+                    className="btn btn-small waves-effect waves-light teal"
+                    onClick={this.handleStart}
+                >
+                    {'START'}
+                </button>
                 <Emotions emotions={this.state.emotions} />
-
-                            <button
-                style={{
-                    width: "180px",
-                    borderRadius: "3px",
-                    letterSpacing: "1px",
-                    marginTop: "0.5rem",
-                    marginBottom: '0.1rem'
-                }}
-                className="btn btn-small waves-effect waves-light teal"
-                onClick={this.handleStart}
-            >
-                {'START'}
-            </button>
-
                 <Graph emotionObject={this.state.emotionObject} />
             </div>
         )
