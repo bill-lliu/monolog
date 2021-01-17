@@ -72,9 +72,8 @@ class App extends Component {
                 console.log(this.state)
             }))
 
-            axios.get('/get/wpm', (res)=>{
-                // const wpm = res['data']['wpm']
-                this.setState({wpm: res['data']['wpm']})
+                axios.get('/get/wpm').then( (res2)=>{
+                this.setState({wpm: res2['data']['wpm']})
             })
         }
             , 2000);
