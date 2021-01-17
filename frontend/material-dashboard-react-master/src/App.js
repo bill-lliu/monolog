@@ -19,7 +19,7 @@ class App extends Component {
             const emotion_data = res['data']['emotions']
             let emotion_list = []
             for(const [key, value] of Object.entries(emotion_data)){
-                emotion_list.push([key, value])
+                emotion_list.push({'emotion': key, 'value': value})
             }
             this.setState({emotions: emotion_list});
         }))
