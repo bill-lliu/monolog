@@ -10,7 +10,7 @@ app = Flask(__name__)
 start_time = ''
 
 # Stacks
-wpm_stack = [[100, datetime.now]]
+wpm_stack = []
 text_stack = [['this is a test', datetime.now()]]
 video_emotion_stack = [[{
     "Angry": "0.0",
@@ -77,7 +77,7 @@ def get_text_emotion():
 def start():
     global start_time, wpm_stack, text_stack, video_emotion_stack
 
-    wpm_stack = [[100, datetime.now]]
+    wpm_stack = []
     text_stack = [[' ', datetime.now()]]
     video_emotion_stack = [[{
         "Angry": "0.0",
