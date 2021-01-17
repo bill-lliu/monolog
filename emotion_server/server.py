@@ -8,8 +8,7 @@ app = Flask(__name__)
 # Stacks
 wpm_stack = []
 text_stack = [[' ', datetime.now()]]
-video_emotion_stack = [
-{ # spoof data
+video_emotion_stack = [[{
     "Angry": "0.0",
     "Disgusted": "0.0",
     "Fearful": "0.06803891649304891",
@@ -19,7 +18,7 @@ video_emotion_stack = [
     "Surprised": "0.4333323403508195"
 },
     datetime.now()
-]
+]]
 
 
 
@@ -40,7 +39,7 @@ def give_video_emotions():
 
 @app.route('/get/video-emotions', methods=['GET'])
 def get_video_emotions():
-    return video_emotion_stack[-1][0]
+    return {'emotions': video_emotion_stack[-1][0]}
 
 @app.route('/give/wpm', methods=['POST'])
 def give_wpm():

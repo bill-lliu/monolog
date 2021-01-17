@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Emotions from './Emotions';
+import axios from "axios";
 
 class App extends Component {
     
@@ -14,12 +15,14 @@ class App extends Component {
     }
 
     componentDidMount() {
-        fetch('http://jsonplaceholder.typicode.com/users')
-        .then(res => res.json())
-        .then((data) => {
-          this.setState({ emotions: data })
-        })
-        .catch(console.log)
+        axios.get('/get/video-emotions').then( (res =>{
+            const emotion_data = res['data']['emotions']
+            let emotion_list = []
+            for(const [key, value] of Object.entries(emotion_data)){
+                emotion_list.push([key, value])
+            }
+            this.setState({emotions: emotion_list});
+        }))
     }
 }
 

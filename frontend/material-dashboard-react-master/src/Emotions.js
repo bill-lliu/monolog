@@ -7,9 +7,8 @@ const Emotions = ({ emotions }) => {
         {emotions.map((emotion) => (
         <div class="card">
             <div class="card-body">
-            <h5 class="card-title">{emotion.name}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{emotion.email}</h6>
-            <p class="card-text">{emotion.company.catchPhrase}</p>
+                <h5 class="card-title">{emotion[0]}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{emotion[1]}</h6>
             </div>
         </div>
         ))}
