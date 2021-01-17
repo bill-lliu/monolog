@@ -106,7 +106,7 @@ def interim_combined():
         'Sad': float(get_video_emotions()['Sad']) + get_text_emotion()['Sad'],
         'Surprised': float(get_video_emotions()['Surprised']) + get_text_emotion()['Surprise']
     }
-    return 'success'
+    return combined
 
 # {'Happy': 0, 'Angry': 0, 'Surprise': 0, 'Sad': 0, 'Fear': 0}
 app.run(port=5555)
