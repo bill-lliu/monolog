@@ -45,6 +45,7 @@ def get_video_emotions():
 @app.route('/give/wpm', methods=['POST'])
 def give_wpm():
     wpm_stack.append([request.form.to_dict(), datetime.now()])
+    print(request.form.to_dict())
     return 'success'
 
 @app.route('/get/wpm', methods=['GET'])
