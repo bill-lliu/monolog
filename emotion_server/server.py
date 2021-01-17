@@ -96,17 +96,25 @@ def start():
 
 @app.route('/get/interim_combined', methods=['GET'])
 def interim_combined():
-    print(get_video_emotions())
-    combined =  {
-        'Angry': float(get_video_emotions()['Angry']) + get_text_emotion()['Angry'],
-        'Disgusted': float(get_video_emotions()['Disgusted']),
-        'Fearful': float(get_video_emotions()['Fearful']) + get_text_emotion()['Fear'],
-        'Happy': float(get_video_emotions()['Happy']) + get_text_emotion()['Happy'],
-        'Neutral': float(get_video_emotions()['Neutral']) * 1.3,
-        'Sad': float(get_video_emotions()['Sad']) + get_text_emotion()['Sad'],
-        'Surprised': float(get_video_emotions()['Surprised']) + get_text_emotion()['Surprise']
-    }
-    return combined
 
+    if(len(text_stack) > 3):
+        phrases = text_stack[-3][0] + ' ' + text_stack[-2][0] + ' ' + text_stack[-1][0]
+    else:
+        phrases = text_stack[-1][0]
+
+    tem =  te.get_emotion(phrases)
+
+    combined =  {
+        'Angry': float(video_emotion_stack[-1][0]['Angry']) + tem['Angry'],
+        'Disgusted': float(video_emotion_stack[-1][0]['Disgusted']),
+        'Fearful': float(video_emotion_stack[-1][0]['Fearful']) + tem['Fear'],
+        'Happy': float(video_emotion_stack[-1][0]['Happy']) + tem['Happy'],
+        'Neutral': float(video_emotion_stack[-1][0]['Neutral']) * 1.3,
+        'Sad': float(video_emotion_stack[-1][0]['Sad']) + tem['Sad'],
+        'Surprised': float(video_emotion_stack[-1][0]['Surprised']) + tem['Surprise']
+    }
+    print(combined)
+    return {'emotions': combined}
+    # return 'success'
 # {'Happy': 0, 'Angry': 0, 'Surprise': 0, 'Sad': 0, 'Fear': 0}
 app.run(port=5555)
