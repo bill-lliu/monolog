@@ -20,4 +20,6 @@ in directory ```frontend\material-dashboard-react-master```, run ```npm install`
 
 
 If the dependancies do not install correctly, you will need to ```pip install _name_of_dependancy_``` or ```npm install _name_of_dependancy_```.
+
+
 Contact me at billliusiyi(at)gmail(dot)com, or simply shoot me a PM on Discord at Bill#9647 if you run into any issues!
