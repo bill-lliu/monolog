@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
-import Emotions from './Emotions';
 import axios from "axios";
 
 import Graph from "./components/Graphs/graph";
+import Emotions from './Emotions';
+import VideoFeed from './VideoFeed.js';
+import './VideoScript.js';
+import './stylesheet.css';
 
 class App extends Component {
     
@@ -39,7 +42,8 @@ class App extends Component {
     render() {
         return (
             <div>
-                <center><h1>monolog</h1></center>
+                <center><img src="logo.png" alt="monolog" /></center>
+                <VideoFeed/>
                 <Emotions emotions={this.state.emotions} />
                 <Graph emotions={this.state.emotionObject} />
             </div>

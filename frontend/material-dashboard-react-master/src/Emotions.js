@@ -6,9 +6,7 @@ import Icon from "@material-ui/core/Icon";
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
 
-import CardHeader from "components/Card/CardHeader.js";
 import CardIcon from "components/Card/CardIcon.js";
-
 
 const Emotions = ({ emotions }) => {
     return (
