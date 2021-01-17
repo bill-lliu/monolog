@@ -52,15 +52,16 @@ class App extends Component {
                     >
                         {'STOP'}
                     </button>
-                    <div xs={12} sm={6} md={3} style={{ margin: "10px", padding: "0px"}}>
-                        <div className="card" key='WPM' style={{ margin: "0px", padding: "0px"}}>
-                            <div className="card-body" style={{ margin: "0px", padding: "0px"}}>
-                                <h5 className="card-title" style={{ margin: "0px", padding: "0px"}}>{'WPM'}</h5>
-                                <h4 className="card-subtitle mb-2 text-muted" style={{ margin: "0px", padding: "0px"}}>{parseFloat(this.state.wpm).toFixed(2)}</h4>
-                            </div>
-                        </div>
-                    </div>
                 </GridContainer>
+
+                <GridItem xs={12} sm={6} md={3} style={{ marginTop: "0px", marginBottom: "0px", width: "220px"}}>
+                    <Card className="card" key='WPM'>
+                        <div className="card-body" style={{ display: "grid", placeItems: "center" }}>
+                            <h5 className="card-title" style={{margin:"5px"}}>{'WPM'}</h5>
+                            <h4 className="card-subtitle mb-2 text-muted" style={{margin:"0px"}}>{parseFloat(this.state.wpm).toFixed(2)}</h4>
+                        </div>
+                    </Card>
+                </GridItem>
 
                 <Emotions emotions={this.state.emotions} wpm={this.state.wpm} />
 
