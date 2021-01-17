@@ -52,14 +52,11 @@ class App extends Component {
                     >
                         {'STOP'}
                     </button>
-                    <div xs={12} sm={6} md={3} style={{ margin: "10px", padding: "0px"}}>
-                        <div className="card" key='WPM' style={{ margin: "0px", padding: "0px"}}>
-                            <div className="card-body" style={{ margin: "0px", padding: "0px"}}>
-                                <h5 className="card-title" style={{ margin: "0px", padding: "0px"}}>{'WPM'}</h5>
-                                <h4 className="card-subtitle mb-2 text-muted" style={{ margin: "0px", padding: "0px"}}>{parseFloat(this.state.wpm).toFixed(2)}</h4>
-                            </div>
-                        </div>
+                    <GridItem>
+                    <div key='WPM'>
+                        <h5 style={{margin:"22px"}}> {'WPM'} {parseFloat(this.state.wpm).toFixed(2)} </h5>
                     </div>
+                </GridItem>
                 </GridContainer>
 
                 <Emotions emotions={this.state.emotions} wpm={this.state.wpm} />
@@ -89,8 +86,8 @@ class App extends Component {
                 console.log(this.state)
             }))
 
-            axios.get('/get/wpm').then((res2) => {
-                this.setState({ wpm: res2['data']['wpm'] })
+                axios.get('/get/wpm').then( (res2)=>{
+                this.setState({wpm: res2['data']['wpm']})
             })
         }
             , 2000);
