@@ -10,7 +10,11 @@ class App extends Component {
 
     render() {
         return (
-            <Emotions emotions={this.state.emotions} />
+            <div>
+                <center><h1>monolog</h1></center>
+                <Emotions emotions={this.state.emotions} />
+                {/* insert graphs here */}
+            </div>
         )
     }
 
