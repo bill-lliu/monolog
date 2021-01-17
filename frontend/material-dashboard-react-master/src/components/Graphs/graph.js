@@ -18,7 +18,10 @@ class Graph extends Component {
                     id: 'volumechart'
                 },
                 xaxis: {
-                    categories: this.state.emotionObject
+                    categories: ['Anger', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprised']
+                },
+                yaxis:{
+                    show: false
                 },
                 stroke: {
                     width: 0,
