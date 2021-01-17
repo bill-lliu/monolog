@@ -9,6 +9,14 @@ import './stylesheet.css';
 
 class App extends Component {
 
+    // func1() {
+    //     alert("Great Shot!");
+    // }
+
+    // func2() {
+    //     alert("Great Shot!");
+    // }
+
     state = {
         emotions: [],
         emotionObject: []
@@ -43,6 +51,8 @@ class App extends Component {
         return (
             <div style={{ display: "grid", placeItems: "center" }}>
                 <center><img src="frontend\material-dashboard-react-master\src\assets\img\logo.png" alt="monolog" /></center>
+                <button onClick={func1}>Start Recording!</button>
+                <button onClick={func2}>Stop</button>
                 <VideoFeed />
                 <Emotions emotions={this.state.emotions} />
                 <Graph emotionObject={this.state.emotionObject} />
