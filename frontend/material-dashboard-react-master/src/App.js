@@ -41,7 +41,7 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{ display: "grid", placeItems: "center" }}>
                 <center><img src="logo.png" alt="monolog" /></center>
                 <VideoFeed />
                 <Emotions emotions={this.state.emotions} />
