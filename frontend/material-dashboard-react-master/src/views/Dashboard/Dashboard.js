@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 // @material-ui/core
@@ -322,3 +322,53 @@ export default function Dashboard() {
     </div>
   );
 }
+
+
+
+// for rendering given information
+class App extends Component {
+
+  state = {
+    contacts: []
+  }
+
+  componentDidMount() {
+    fetch('http://jsonplaceholder.typicode.com/users')
+    // fetch('/get/video-emotions')
+    .then(res => res.json())
+    .then((data) => {
+      this.setState({ emotions: data })
+    })
+    .catch(console.log)
+  }
+
+  render() {
+    return (
+      <Emotions emotions={this.state.emotions}></Emotions>
+      // <div class="card">
+      //   <div class="card-body">
+      //     <h5 class="card-title">Steve Jobs</h5>
+      //     <h6 class="card-subtitle mb-2 text-muted">steve@apple.com</h6>
+      //     <p class="card-text">Stay Hungry, Stay Foolish</p>
+      //   </div>
+      // </div>
+    );
+  }
+}
+
+const Emotions = ({ emotions }) => {
+  return (
+    <div>
+      <center><h1>Emotions from FaceMesh</h1></center>
+      {emotions.map((emotion) => (
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{emotion.name}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{emotion.email}</h6>
+            <p class="card-text">{emotion.company.catchPhrase}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+};
