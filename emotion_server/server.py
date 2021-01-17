@@ -5,17 +5,21 @@ import text2emotion as te
 now = datetime.now()
 app = Flask(__name__)
 
+
+
+start_time = ''
+
 # Stacks
 wpm_stack = []
-text_stack = [[' ', datetime.now()]]
+text_stack = [['this is a test', datetime.now()]]
 video_emotion_stack = [[{
     "Angry": "0.0",
     "Disgusted": "0.0",
-    "Fearful": "0.06803891649304891",
-    "Happy": "2.861338003571727e-09",
-    "Neutral": "0.4986287395159417",
+    "Fearful": "0.0",
+    "Happy": "0.0",
+    "Neutral": "0.0",
     "Sad": "0.0",
-    "Surprised": "0.4333323403508195"
+    "Surprised": "0.0"
 },
     datetime.now()
 ]]
@@ -69,4 +73,40 @@ def get_text_emotion():
 
     return te.get_emotion(phrases)
 
+@app.route('/get/start', methods=['GET'])
+def start():
+    global start_time, wpm_stack, text_stack, video_emotion_stack
+
+    wpm_stack = []
+    text_stack = [[' ', datetime.now()]]
+    video_emotion_stack = [[{
+        "Angry": "0.0",
+        "Disgusted": "0.0",
+        "Fearful": "0.0",
+        "Happy": "0.0",
+        "Neutral": "0.0",
+        "Sad": "0.0",
+        "Surprised": "0.0"
+    },
+        datetime.now()
+    ]]
+
+    start_time = datetime.now()
+    return 'started'
+
+@app.route('/get/interim_combined', methods=['GET'])
+def interim_combined():
+    print(get_video_emotions())
+    combined =  {
+        'Angry': float(get_video_emotions()['Angry']) + get_text_emotion()['Angry'],
+        'Disgusted': float(get_video_emotions()['Disgusted']),
+        'Fearful': float(get_video_emotions()['Fearful']) + get_text_emotion()['Fear'],
+        'Happy': float(get_video_emotions()['Happy']) + get_text_emotion()['Happy'],
+        'Neutral': float(get_video_emotions()['Neutral']) * 1.3,
+        'Sad': float(get_video_emotions()['Sad']) + get_text_emotion()['Sad'],
+        'Surprised': float(get_video_emotions()['Surprised']) + get_text_emotion()['Surprise']
+    }
+    return 'success'
+
+# {'Happy': 0, 'Angry': 0, 'Surprise': 0, 'Sad': 0, 'Fear': 0}
 app.run(port=5555)

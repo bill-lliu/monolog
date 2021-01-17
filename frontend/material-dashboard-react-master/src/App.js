@@ -22,42 +22,39 @@ class App extends Component {
         emotionObject: []
     };
 
-    chart_data = () => {
-        return (
-            [
-                {
-                    label: 'Series 1',
-                    data: [[0, 1], [1, 2], [2, 4], [3, 2], [4, 7]]
-                },
-                {
-                    label: 'Series 2',
-                    data: [[0, 3], [1, 1], [2, 5], [3, 6], [4, 4]]
-                }
-            ]
-        )
-    }
 
-    axes = () => {
-        return (
-            [
-                { primary: true, type: 'ordinal', position: 'bottom' },
-                { type: 'linear', position: 'left' }
-            ]
-        )
-    }
 
 
     render() {
         return (
             <div style={{ display: "grid", placeItems: "center" }}>
                 <center><img src="frontend\material-dashboard-react-master\src\assets\img\logo.png" alt="monolog" /></center>
-                <button onClick={func1}>Start Recording!</button>
-                <button onClick={func2}>Stop</button>
+                {/*<button onClick={func1}>Start Recording!</button>*/}
+                {/*<button onClick={func2}>Stop</button>*/}
                 <VideoFeed />
                 <Emotions emotions={this.state.emotions} />
+
+                            <button
+                style={{
+                    width: "180px",
+                    borderRadius: "3px",
+                    letterSpacing: "1px",
+                    marginTop: "0.5rem",
+                    marginBottom: '0.1rem'
+                }}
+                className="btn btn-small waves-effect waves-light teal"
+                onClick={this.handleStart}
+            >
+                {'START'}
+            </button>
+
                 <Graph emotionObject={this.state.emotionObject} />
             </div>
         )
+    }
+
+    handleStart() {
+        axios.get()
     }
 
     //first time checking page
