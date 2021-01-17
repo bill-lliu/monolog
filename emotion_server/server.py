@@ -45,6 +45,7 @@ def get_video_emotions():
 @app.route('/give/wpm', methods=['POST'])
 def give_wpm():
     wpm_stack.append([request.form.to_dict(), datetime.now()])
+    print(request.form.to_dict())
     return 'success'
 
 @app.route('/get/wpm', methods=['GET'])
@@ -63,7 +64,7 @@ def get_text():
 @app.route('/get/text_emotion', methods=['GET'])
 def get_text_emotion():
     if(len(text_stack) > 3):
-        phrases = text_stack[-3] + ' ' + text_stack[-2] + ' ' + text_stack[-1]
+        phrases = text_stack[-3][0] + ' ' + text_stack[-2][0] + ' ' + text_stack[-1][0]
     else:
         phrases = text_stack[-1][0]
 
