@@ -53,7 +53,7 @@ def give_wpm():
 
 @app.route('/get/wpm', methods=['GET'])
 def get_wpm():
-    return wpm_stack[-1][0]
+    return {'wpm': wpm_stack[-1][0]}
 
 @app.route('/give/text', methods=['POST'])
 def give_text():

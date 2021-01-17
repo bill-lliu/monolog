@@ -7,6 +7,9 @@ import VideoFeed from './VideoFeed.js';
 import './VideoScript.js';
 import './stylesheet.css';
 import logo from './assets/img/logo.png';
+import GridItem from "./components/Grid/GridItem";
+import {Card} from "@material-ui/core";
+import GridContainer from "./components/Grid/GridContainer";
 
 class App extends Component {
 
@@ -20,7 +23,8 @@ class App extends Component {
 
     state = {
         emotions: [],
-        emotionObject: []
+        emotionObject: [],
+        wpm: 0
     };
 
 
@@ -33,7 +37,15 @@ class App extends Component {
                 {/*<button onClick={func1}>Start Recording!</button>*/}
                 {/*<button onClick={func2}>Stop</button>*/}
                 <VideoFeed />
-                <Emotions emotions={this.state.emotions} />
+                <Emotions emotions={this.state.emotions} wpm={this.state.wpm}/>
+                            <GridItem xs={12} sm={6} md={3} style={{ marginTop: "15px", marginBottom: "15px"}}>
+                    <Card className="card" key='WPM'>
+                        <div className="card-body" style={{ display: "grid", placeItems: "center" }}>
+                            <h5 className="card-title">{'WPM'}</h5>
+                            <h4 className="card-subtitle mb-2 text-muted">{parseFloat(this.state.wpm).toFixed(3)}</h4>
+                        </div>
+                    </Card>
+                </GridItem>
 
                             <button
                 style={{
@@ -72,6 +84,11 @@ class App extends Component {
                 this.setState({ emotionObject: Object.values(emotion_data) })
                 console.log(this.state)
             }))
+
+            axios.get('/get/wpm', (res)=>{
+                // const wpm = res['data']['wpm']
+                this.setState({wpm: res['data']['wpm']})
+            })
         }
             , 2000);
     }

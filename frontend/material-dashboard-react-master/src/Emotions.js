@@ -21,14 +21,6 @@ const Emotions = ({ emotions }) => {
                     </Card>
                 </GridItem>
             ))}
-            <GridItem xs={12} sm={6} md={3} style={{ marginTop: "15px", marginBottom: "15px"}}>
-                    <Card className="card" key={WPM['WPM']}>
-                        <div className="card-body" style={{ display: "grid", placeItems: "center" }}>
-                            <h5 className="card-title">{WPM['WPM']}</h5>
-                            <h4 className="card-subtitle mb-2 text-muted">{parseFloat(WPM['WPM']).toFixed(3)}</h4>
-                        </div>
-                    </Card>
-                </GridItem>
         </GridContainer>
     )
 };
