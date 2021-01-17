@@ -13,29 +13,16 @@ import GridContainer from "./components/Grid/GridContainer";
 
 class App extends Component {
 
-    // func1() {
-    //     alert("Great Shot!");
-    // }
-
-    // func2() {
-    //     alert("Great Shot!");
-    // }
-
     state = {
         emotions: [],
         emotionObject: [],
         wpm: 0
     };
 
-
-
-
     render() {
         return (
             <div style={{ display: "grid", placeItems: "center" }}>
-                <center><img src={logo} alt="monolog" width="240px" height="80px"/></center>
-                {/*<button onClick={func1}>Start Recording!</button>*/}
-                {/*<button onClick={func2}>Stop</button>*/}
+                <center><img src={logo} alt="monolog" width="240px" height="80px" /></center>
                 <VideoFeed />
                 <Emotions emotions={this.state.emotions} wpm={this.state.wpm}/>
                             <GridItem xs={12} sm={6} md={3} style={{ marginTop: "15px", marginBottom: "15px"}}>
