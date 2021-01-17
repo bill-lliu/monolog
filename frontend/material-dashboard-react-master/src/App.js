@@ -24,31 +24,45 @@ class App extends Component {
             <div style={{ display: "grid", placeItems: "center" }}>
                 <center><img src={logo} alt="monolog" width="240px" height="80px" /></center>
                 <VideoFeed />
-                <button
-                    style={{
-                        width: "180px",
-                        height: "40px",
-                        borderRadius: "10px",
-                        letterSpacing: "1px",
-                        marginTop: "1rem",
-                        marginBottom: '1rem'
-                    }}
-                    className="btn btn-small waves-effect waves-light teal"
-                    onClick={this.handleStart}
-                >
-                    {'START'}
-                </button>
-                
-                <Emotions emotions={this.state.emotions} wpm={this.state.wpm} />
-                <GridItem xs={12} sm={6} md={3} style={{ marginTop: "15px", marginBottom: "15px" }}>
-                    <Card className="card" key='WPM'>
-                        <div className="card-body" style={{ display: "grid", placeItems: "center" }}>
-                            <h5 className="card-title">{'WPM'}</h5>
-                            <h4 className="card-subtitle mb-2 text-muted">{parseFloat(this.state.wpm).toFixed(2)}</h4>
-                        </div>
-                    </Card>
+
+                <GridContainer>
+                    <button
+                        style={{
+                            width: "180px",
+                            height: "40px",
+                            borderRadius: "10px",
+                            letterSpacing: "1px",
+                            margin: "1rem"
+                        }}
+                        className="btn btn-small waves-effect waves-light teal"
+                        onClick={this.handleStart}
+                    >
+                        {'START RECORDING!'}
+                    </button>
+                    <button
+                        style={{
+                            width: "60px",
+                            height: "40px",
+                            borderRadius: "10px",
+                            letterSpacing: "1px",
+                            margin: "1rem"
+                        }}
+                        className="btn btn-small waves-effect waves-light teal"
+                        onClick={this.handleStart}
+                    >
+                        {'STOP'}
+                    </button>
+                    <GridItem>
+                    <div key='WPM'>
+                        <h5 style={{margin:"22px"}}> {'WPM'} {parseFloat(this.state.wpm).toFixed(2)} </h5>
+                    </div>
                 </GridItem>
+                </GridContainer>
+
+                <Emotions emotions={this.state.emotions} wpm={this.state.wpm} />
+
                 <Graph emotionObject={this.state.emotionObject} />
+
             </div>
         )
     }
