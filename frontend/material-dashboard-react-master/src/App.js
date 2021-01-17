@@ -2,18 +2,46 @@ import React, {Component} from 'react';
 import Emotions from './Emotions';
 import axios from "axios";
 
+import Graph from "./components/Graphs/graph";
+
 class App extends Component {
     
     state = {
-        emotions: []
+        emotions: [],
+        emotionObject: []
     };
+
+    chart_data = () =>{
+        return(
+            [
+      {
+        label: 'Series 1',
+        data: [[0, 1], [1, 2], [2, 4], [3, 2], [4, 7]]
+      },
+      {
+        label: 'Series 2',
+        data: [[0, 3], [1, 1], [2, 5], [3, 6], [4, 4]]
+      }
+    ]
+        )
+    }
+
+    axes = () =>{
+        return(
+            [
+      { primary: true, type: 'ordinal', position: 'bottom' },
+      { type: 'linear', position: 'left' }
+    ]
+        )
+    }
+
 
     render() {
         return (
             <div>
                 <center><h1>monolog</h1></center>
                 <Emotions emotions={this.state.emotions} />
-                {/* insert graphs here */}
+                <Graph emotions={this.state.emotionObject} />
             </div>
         )
     }
@@ -26,6 +54,8 @@ class App extends Component {
                 emotion_list.push({'emotion': key, 'value': value})
             }
             this.setState({emotions: emotion_list});
+            this.setState({emotionObject: Object.keys(emotion_data)})
+            console.log(this.state)
         }))
     }
 }
