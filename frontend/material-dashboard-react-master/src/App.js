@@ -6,6 +6,7 @@ import Emotions from './Emotions';
 import VideoFeed from './VideoFeed.js';
 import './VideoScript.js';
 import './stylesheet.css';
+import logo from './assets/img/logo.png';
 
 class App extends Component {
 
@@ -28,7 +29,7 @@ class App extends Component {
     render() {
         return (
             <div style={{ display: "grid", placeItems: "center" }}>
-                <center><img src="frontend\material-dashboard-react-master\src\assets\img\logo.png" alt="monolog" /></center>
+                <center><img src={logo} alt="monolog" width="240px" height="80px"/></center>
                 {/*<button onClick={func1}>Start Recording!</button>*/}
                 {/*<button onClick={func2}>Stop</button>*/}
                 <VideoFeed />
