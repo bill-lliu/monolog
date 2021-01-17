@@ -61,7 +61,7 @@ class App extends Component {
     componentDidMount() {
         this.interval = setInterval(() => {
             console.log("Sending Request")
-            axios.get('/get/interim-combined').then((res => {
+            axios.get('/get/interim_combined').then((res => {
                 const emotion_data = res['data']['emotions']
                 let emotion_list = []
                 for (const [key, value] of Object.entries(emotion_data)) {
