@@ -1,6 +1,8 @@
 ## monolog
 Monitor, Practice, and Improve your Speaking to Deliver The Best Speech You Can (with Machine Learning)
 
+https://user-images.githubusercontent.com/26264647/189282010-e74a61ca-2036-423a-bf55-0ba4a15b877b.mp4
+
 **Demo Here!**
 https://www.youtube.com/watch?v=GlPGKQVY_A0
 
